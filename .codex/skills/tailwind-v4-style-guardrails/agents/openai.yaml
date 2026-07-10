@@ -1,4 +1,0 @@
-interface:
-  display_name: "Tailwind V4 Style Guardrails"
-  short_description: "Keep Tailwind styling consistent in this portfolio."
-  default_prompt: "Use $tailwind-v4-style-guardrails to style this portfolio with canonical Tailwind v4 utilities and project theme tokens."
