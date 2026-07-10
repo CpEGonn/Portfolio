@@ -126,6 +126,10 @@ a {
   overflow-x: hidden;
 }
 
+.safe-bottom-space {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.5rem);
+}
+
 .project-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;

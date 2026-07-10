@@ -207,7 +207,7 @@ function Navbar({ theme, onToggleTheme }) {
             ))}
           </nav>
 
-          <div className="border-border mt-auto border-t pt-6 pb-2">
+          <div className="safe-bottom-space border-border mt-auto border-t pt-6">
             <button
               type="button"
               onClick={onToggleTheme}
