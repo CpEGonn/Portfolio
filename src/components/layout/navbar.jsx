@@ -158,7 +158,7 @@ function Navbar({ theme, onToggleTheme }) {
 
       <aside
         className={cn(
-          'bg-surface fixed inset-0 z-50 flex min-h-screen flex-col overflow-y-auto p-5 transition duration-300 lg:hidden',
+          'bg-surface fixed inset-x-0 top-0 z-50 flex h-dvh min-h-dvh flex-col overflow-y-auto p-5 overscroll-contain transition duration-300 lg:hidden',
           isMenuOpen
             ? 'translate-y-0 opacity-100'
             : 'pointer-events-none -translate-y-6 opacity-0',
