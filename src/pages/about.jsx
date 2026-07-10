@@ -1,0 +1,18 @@
+function About() {
+  return (
+    <section className="bg-surface border-border shadow-soft rounded-4xl border p-8 sm:p-10">
+      <p className="text-muted text-sm font-semibold uppercase tracking-[0.28em]">
+        About Page
+      </p>
+      <h1 className="mt-3 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">
+        About content goes here.
+      </h1>
+      <p className="text-muted mt-4 max-w-2xl text-base leading-7">
+        Use this page later for your introduction, background, skills, and the
+        story behind your work.
+      </p>
+    </section>
+  )
+}
+
+export default About
