@@ -76,7 +76,7 @@ function ContactSection() {
                     <p className="text-primary text-xs font-semibold uppercase tracking-[0.16em]">
                       {item.label}
                     </p>
-                    <p className="text-primary mt-1 break-words text-sm leading-7 sm:text-base">
+                    <p className="text-primary mt-1 wrap-break-word text-sm leading-7 sm:text-base">
                       {item.value}
                     </p>
                   </div>

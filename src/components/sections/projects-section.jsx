@@ -127,8 +127,16 @@ function ProjectsSection() {
   }, [])
 
   function openProject(projectId) {
+    document.documentElement.dataset.projectModalOpen = 'true'
+    window.dispatchEvent(new CustomEvent('project-modal-state', { detail: { isOpen: true } }))
     setActiveProjectId(projectId)
     setIsDetailOpen(true)
+  }
+
+  function closeProject() {
+    delete document.documentElement.dataset.projectModalOpen
+    window.dispatchEvent(new CustomEvent('project-modal-state', { detail: { isOpen: false } }))
+    setIsDetailOpen(false)
   }
 
   function scrollProjects(direction) {
@@ -221,11 +229,11 @@ function ProjectsSection() {
 
           <div className="relative overflow-hidden">
             {canScrollLeft && (
-              <div className="pointer-events-none absolute top-0 bottom-2 left-0 z-10 w-24 bg-linear-to-r from-bg via-bg/92 via-35% to-transparent" />
+              <div className="pointer-events-none absolute top-0 bottom-2 left-0 z-10 w-40 bg-linear-to-r from-bg via-bg/72 via-55% to-transparent" />
             )}
 
             {canScrollRight && (
-              <div className="pointer-events-none absolute top-0 right-0 bottom-2 z-10 w-24 bg-linear-to-l from-bg via-bg/92 via-35% to-transparent" />
+              <div className="pointer-events-none absolute top-0 right-0 bottom-2 z-10 w-40 bg-linear-to-l from-bg via-bg/72 via-55% to-transparent" />
             )}
 
             {canScrollLeft && (
@@ -350,7 +358,7 @@ function ProjectsSection() {
 
       <ProjectDetailsModal
         isOpen={isDetailOpen}
-        onClose={() => setIsDetailOpen(false)}
+        onClose={closeProject}
         project={activeProject}
       />
     </>

@@ -16,6 +16,7 @@ const navLinks = [
 function Navbar({ theme, onToggleTheme }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
   const logo = theme === 'dark' ? logoWhite : logoBlack
@@ -28,6 +29,24 @@ function Navbar({ theme, onToggleTheme }) {
       document.body.style.overflow = ''
     }
   }, [isMenuOpen])
+
+  useEffect(() => {
+    const handleProjectModalState = (event) => {
+      const isOpen = event.detail?.isOpen === true
+
+      setIsProjectModalOpen(isOpen)
+
+      if (isOpen) {
+        setActiveSection('projects')
+      }
+    }
+
+    window.addEventListener('project-modal-state', handleProjectModalState)
+
+    return () => {
+      window.removeEventListener('project-modal-state', handleProjectModalState)
+    }
+  }, [])
 
   useEffect(() => {
     if (location.pathname !== '/') {
@@ -43,6 +62,10 @@ function Navbar({ theme, onToggleTheme }) {
     }
 
     const syncActiveSection = () => {
+      if (isProjectModalOpen || document.documentElement.dataset.projectModalOpen === 'true') {
+        return
+      }
+
       const lastSection = sectionElements.at(-1)
       const markerOffset = 180
       const scrollPosition = window.scrollY + markerOffset
@@ -71,7 +94,7 @@ function Navbar({ theme, onToggleTheme }) {
       window.removeEventListener('scroll', syncActiveSection)
       window.removeEventListener('resize', syncActiveSection)
     }
-  }, [location.pathname])
+  }, [isProjectModalOpen, location.pathname])
 
   function scrollToSection(sectionId) {
     setActiveSection(sectionId)
