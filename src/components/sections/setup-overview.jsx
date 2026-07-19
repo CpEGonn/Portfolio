@@ -73,7 +73,6 @@ const skillCollections = [
     icon: Cpu,
     items: [
       "Python",
-      "Java",
       "Digital Logic Circuits",
       "Microcontrollers",
       "Arduino",
@@ -109,7 +108,6 @@ const skillIcons = {
   AutoCAD: PencilRuler,
   SketchUp: PencilRuler,
   Python: SiPython,
-  Java: SiOpenjdk,
   "Digital Logic Circuits": Braces,
   Microcontrollers: Cpu,
   Arduino: Badge,
