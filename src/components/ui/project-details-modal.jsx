@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { X } from 'lucide-react'
+import ProjectGallery from './project-gallery'
 
 function ProjectDetailsModal({ isOpen, onClose, project }) {
   const ProjectIcon = project?.icon
@@ -144,6 +145,12 @@ function ProjectDetailsModal({ isOpen, onClose, project }) {
                 </div>
               </div>
             </div>
+
+            {Array.isArray(project.gallery) && project.gallery.length > 0 && (
+              <div className="bg-card border-border flex items-center justify-end border-t px-5 py-4 sm:px-8 sm:py-5">
+                <ProjectGallery gallery={project.gallery} label="UI/UX Design" />
+              </div>
+            )}
           </motion.div>
         </motion.div>
       )}

@@ -5,8 +5,8 @@ import heroImage from "../../assets/images/branding/hero.webp";
 
 const roles = [
   "Computer Engineer",
-  "Web Development Learner",
-  "Embedded Systems Enthusiast",
+  "Web Development",
+  "Embedded Systems",
 ];
 
 function HeroSection() {
@@ -15,7 +15,7 @@ function HeroSection() {
   useEffect(() => {
     const intervalId = window.setInterval(() => {
       setActiveRoleIndex((currentIndex) => (currentIndex + 1) % roles.length);
-    }, 2200);
+    }, 2000);
 
     return () => window.clearInterval(intervalId);
   }, []);
@@ -41,13 +41,13 @@ function HeroSection() {
           className="flex flex-col gap-8"
         >
           <div className="bg-card border-border text-muted inline-flex w-fit items-center gap-3 rounded-full border px-4 py-2 text-sm sm:text-base">
-            <Circle size={10} className="fill-current stroke-none" />
+            <Circle size={10} className=" bg-emerald-500 rounded-full" />
             <span>Hello, I&apos;m</span>
           </div>
 
           <div className="flex flex-col gap-2.5">
             <h1 className="text-primary max-w-4xl text-5xl font-semibold tracking-[-0.07em] sm:text-6xl lg:text-7xl xl:text-[5.4rem]">
-              Mark Erin Gonzalvo
+              Mark Erin P. Gonzalvo
             </h1>
 
             <div className="min-h-14 overflow-hidden sm:min-h-16">
@@ -57,7 +57,7 @@ function HeroSection() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  transition={{ duration: 0.50, ease: "easeOut" }}
                   className="text-secondary text-3xl font-medium tracking-[-0.04em] sm:text-5xl"
                 >
                   {activeRole}

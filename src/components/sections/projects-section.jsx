@@ -13,6 +13,16 @@ import {
 } from 'lucide-react'
 import ProjectDetailsModal from '../ui/project-details-modal'
 import { cn } from '../../lib/utils'
+import hivemateLanding from '../../assets/HivemateAssets/Landing Page.png'
+import hivemateDashboard from '../../assets/HivemateAssets/Main Dashboard Page.png'
+import hivemateDashboardModal1 from '../../assets/HivemateAssets/Main Dashboard Page - popup1.png'
+import hivemateDashboardModal2 from '../../assets/HivemateAssets/Main Dashboard Page - popup2.png'
+import hivemateAnnouncement from '../../assets/HivemateAssets/Make Aannouncement Page.png'
+import hivemateBills from '../../assets/HivemateAssets/Manage Bills Page.png'
+import hivemateBillsModal1 from '../../assets/HivemateAssets/Manage Bills Page - popup1.png'
+import hivemateBillsModal2 from '../../assets/HivemateAssets/Manage Bills Page - popup2.png'
+import hivemateSchedule from '../../assets/HivemateAssets/Manage Schedule Page.png'
+import hivemateRegister from '../../assets/HivemateAssets/RegisterPage.png'
 
 const projects = [
   {
@@ -44,6 +54,18 @@ const projects = [
       'Developed the backend API using Django REST Framework and MySQL with AI-assisted development support.',
     ],
     stack: ['Figma', 'React.js', 'Tailwind CSS', 'Django REST Framework', 'MySQL'],
+    gallery: [
+      { src: hivemateLanding, alt: 'Hivemate landing page', label: 'Landing Page' },
+      { src: hivemateRegister, alt: 'Hivemate registration page', label: 'Register Page' },
+      { src: hivemateDashboard, alt: 'Hivemate main dashboard', label: 'Main Dashboard Page' },
+      { src: hivemateDashboardModal1, alt: 'Hivemate dashboard popup', label: 'Dashboard Modal' },
+      { src: hivemateDashboardModal2, alt: 'Hivemate dashboard popup', label: 'Dashboard Modal' },
+      { src: hivemateBills, alt: 'Hivemate manage bills page', label: 'Manage Bills Page' },
+      { src: hivemateBillsModal1, alt: 'Hivemate bills popup', label: 'Bills Modal' },
+      { src: hivemateBillsModal2, alt: 'Hivemate bills popup', label: 'Bills Modal' },
+      { src: hivemateSchedule, alt: 'Hivemate manage schedule page', label: 'Manage Schedule Page' },
+      { src: hivemateAnnouncement, alt: 'Hivemate make announcement page', label: 'Announcement Page' },
+    ],
   },
   {
     id: 'stored-program',
@@ -127,6 +149,7 @@ function ProjectsSection() {
   }, [])
 
   function openProject(projectId) {
+    // eslint-disable-next-line react-hooks/immutability -- intentional DOM dataset write in event handler
     document.documentElement.dataset.projectModalOpen = 'true'
     window.dispatchEvent(new CustomEvent('project-modal-state', { detail: { isOpen: true } }))
     setActiveProjectId(projectId)

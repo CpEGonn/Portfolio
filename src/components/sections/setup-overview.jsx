@@ -7,6 +7,7 @@ import {
   ChevronDown,
   ChevronUp,
   Cpu,
+  GraduationCap,
   Layers3,
   MapPinned,
   MessageSquareText,
@@ -21,7 +22,6 @@ import {
   SiHtml5,
   SiJavascript,
   SiMysql,
-  SiOpenjdk,
   SiPython,
   SiReact,
   SiSupabase,
@@ -30,6 +30,7 @@ import {
 import { VscVscode } from "react-icons/vsc";
 import mapBlack from "../../assets/images/branding/map-black.webp";
 import mapWhite from "../../assets/images/branding/map-white.webp";
+import bsuLogo from "../../assets/images/bsu-logo.webp";
 
 const familiarTools = [
   { label: "Python", icon: SiPython },
@@ -197,41 +198,67 @@ function SetupOverview() {
             </div>
           </div>
 
-          <div className="bg-surface border-border rounded-4xl border p-6 sm:p-8">
-            <div className="grid gap-8 lg:min-h-full lg:grid-cols-[0.72fr_1fr] lg:items-center">
-              <div className="flex items-center justify-center lg:h-full lg:justify-center">
+          <div className="bg-surface border-border flex h-full flex-col rounded-4xl border p-5 sm:p-6">
+            <div className="grid flex-1 content-center gap-5 sm:grid-cols-[0.72fr_1fr] sm:items-center">
+              <div className="flex items-center justify-center">
                 <img
                   src={mapBlack}
                   alt="Map of the Philippines"
-                  className="location-map-light h-auto w-full max-w-44 lg:max-w-48"
+                  className="location-map-light h-auto w-full max-w-44"
                 />
                 <img
                   src={mapWhite}
                   alt="Map of the Philippines"
-                  className="location-map-dark h-auto w-full max-w-44 lg:max-w-48"
+                  className="location-map-dark h-auto w-full max-w-44"
                 />
               </div>
 
-              <div className="flex flex-col justify-center lg:min-h-68 lg:pr-3">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col justify-center">
+                <div className="flex items-center gap-2.5">
                   <div className="bg-card border-border text-primary rounded-2xl border p-3">
                     <MapPinned size={18} />
                   </div>
-                  <div>
-                    <p className="text-primary text-base font-semibold uppercase tracking-[0.16em]">
-                      Location
-                    </p>
-                  </div>
+                  <p className="text-primary text-base font-semibold uppercase tracking-[0.16em]">
+                    Location
+                  </p>
                 </div>
 
-                <p className="text-primary mt-5 text-5xl font-semibold tracking-[-0.06em] sm:text-6xl">
+                <p className="text-primary mt-4 text-4xl font-semibold tracking-[-0.06em] sm:text-5xl xl:text-6xl">
                   Philippines
                 </p>
-                <p className="text-muted mt-6 max-w-sm text-base leading-8 sm:text-lg">
+                <p className="text-muted mt-4 max-w-md text-base leading-7">
                   Open to remote collaboration and entry-level roles where
                   technical adaptability, continuous learning, and steady
                   professional growth are valued.
                 </p>
+              </div>
+            </div>
+
+            <div className="border-border mt-5 flex flex-col justify-center gap-3 border-t pt-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+              <div className="flex min-w-0 items-center gap-4">
+                <div className="bg-card border-border flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border p-2.5">
+                  <img
+                    src={bsuLogo}
+                    alt="Batangas State University logo"
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <GraduationCap size={15} className="text-primary shrink-0" />
+                    <p className="text-primary text-xs font-semibold uppercase tracking-[0.14em]">
+                      Education
+                    </p>
+                  </div>
+                  <p className="text-primary mt-1 text-sm leading-snug font-medium">
+                    Batangas State University - The National Engineering
+                    University
+                  </p>
+                  <p className="text-secondary text-sm">
+                    BS Computer Engineering
+                    <span className="text-muted"> · 2022 - 2026</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
