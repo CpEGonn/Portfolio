@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { X } from 'lucide-react'
+import { ExternalLink, Info, X } from 'lucide-react'
 import ProjectGallery from './project-gallery'
 
 function ProjectDetailsModal({ isOpen, onClose, project }) {
@@ -143,12 +143,35 @@ function ProjectDetailsModal({ isOpen, onClose, project }) {
                     ))}
                   </ul>
                 </div>
+
+                {project.notice && (
+                  <div className="bg-surface border-border flex items-start gap-3 rounded-2xl border p-4">
+                    <Info size={18} className="text-primary mt-1.5 shrink-0" aria-hidden="true" />
+                    <p className="text-muted text-sm leading-7">
+                      <span className="text-primary font-semibold">Note: </span>
+                      {project.notice}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
 
-            {Array.isArray(project.gallery) && project.gallery.length > 0 && (
+            {(project.liveUrl || (Array.isArray(project.gallery) && project.gallery.length > 0)) && (
               <div className="bg-card border-border flex items-center justify-end border-t px-5 py-4 sm:px-8 sm:py-5">
-                <ProjectGallery gallery={project.gallery} label="UI/UX Design" />
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="bg-primary text-bg inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity duration-150 hover:opacity-90"
+                  >
+                    <ExternalLink size={16} />
+                    <span>View</span>
+                  </a>
+                )}
+                {Array.isArray(project.gallery) && project.gallery.length > 0 && (
+                  <ProjectGallery gallery={project.gallery} label="UI/UX Design" />
+                )}
               </div>
             )}
           </motion.div>

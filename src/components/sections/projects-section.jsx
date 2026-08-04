@@ -39,6 +39,9 @@ const projects = [
       'Used development tools throughout the build process for implementation support, debugging, and code refinement.',
     ],
     stack: ['React.js', 'Tailwind CSS', 'FastAPI', 'Supabase', 'E5-base-v2'],
+    liveUrl: 'https://thesis-clone.markeringonzalvo.site',
+    notice:
+      'This website is a landing-page clone of the actual project. The original project is not currently available to the public due to institutional considerations.',
   },
   {
     id: 'dorm',
