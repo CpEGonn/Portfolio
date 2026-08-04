@@ -157,20 +157,20 @@ function ProjectDetailsModal({ isOpen, onClose, project }) {
             </div>
 
             {(project.liveUrl || (Array.isArray(project.gallery) && project.gallery.length > 0)) && (
-              <div className="bg-card border-border flex items-center justify-end border-t px-5 py-4 sm:px-8 sm:py-5">
+              <div className="bg-card border-border flex items-center justify-end gap-3 border-t px-5 py-4 sm:px-8 sm:py-5">
+                {Array.isArray(project.gallery) && project.gallery.length > 0 && (
+                  <ProjectGallery gallery={project.gallery} label="UI/UX Design" />
+                )}
                 {project.liveUrl && (
                   <a
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="bg-primary text-bg inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity duration-150 hover:opacity-90"
+                    className="bg-primary text-bg inline-flex min-w-32 cursor-pointer items-center justify-center gap-2 rounded-2xl px-5 py-2.5 text-sm font-semibold transition-opacity duration-150 hover:opacity-90"
                   >
                     <ExternalLink size={16} />
-                    <span>View</span>
+                    <span>Live Demo</span>
                   </a>
-                )}
-                {Array.isArray(project.gallery) && project.gallery.length > 0 && (
-                  <ProjectGallery gallery={project.gallery} label="UI/UX Design" />
                 )}
               </div>
             )}

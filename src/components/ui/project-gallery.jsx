@@ -1,11 +1,13 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { ArrowLeft, ArrowRight, ExternalLink, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, X } from 'lucide-react'
+import { SiFigma } from 'react-icons/si'
 import { cn } from '../../lib/utils'
 
 function ProjectGallery({ gallery = [], label = 'UI/UX Design' }) {
   const [isOpen, setIsOpen] = useState(false)
   const [index, setIndex] = useState(0)
+  const swipeRef = useRef(null)
 
   const count = gallery.length
   const slide = gallery[index] ?? gallery[0]
@@ -43,15 +45,43 @@ function ProjectGallery({ gallery = [], label = 'UI/UX Design' }) {
   const canPrev = index > 0
   const canNext = index < count - 1
 
+  const handlePointerDown = (event) => {
+    if (event.target.closest('button')) {
+      return
+    }
+
+    swipeRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+    }
+    event.currentTarget.setPointerCapture(event.pointerId)
+  }
+
+  const handlePointerEnd = (event) => {
+    const swipe = swipeRef.current
+    swipeRef.current = null
+    if (!swipe || swipe.pointerId !== event.pointerId) {
+      return
+    }
+
+    const horizontalDistance = event.clientX - swipe.startX
+    const verticalDistance = event.clientY - swipe.startY
+
+    if (Math.abs(horizontalDistance) >= 48 && Math.abs(horizontalDistance) > Math.abs(verticalDistance)) {
+      go(horizontalDistance < 0 ? 1 : -1)
+    }
+  }
+
   return (
     <>
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="bg-primary text-bg inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity duration-150 hover:opacity-90"
+        className="bg-surface border-border text-primary inline-flex min-w-32 cursor-pointer items-center justify-center gap-2 rounded-2xl border px-5 py-2.5 text-sm font-semibold transition-colors duration-150 hover:bg-card"
       >
-        <ExternalLink size={16} />
-        <span>View</span>
+        <SiFigma size={16} aria-hidden="true" />
+        <span>UI Design</span>
       </button>
 
       <AnimatePresence>
@@ -91,11 +121,16 @@ function ProjectGallery({ gallery = [], label = 'UI/UX Design' }) {
                 </button>
               </div>
 
-              <div className="bg-surface relative flex min-h-0 flex-1 items-center justify-center overflow-hidden p-4 sm:p-8">
+              <div
+                className="bg-surface relative flex min-h-0 flex-1 cursor-grab touch-pan-y items-center justify-center overflow-hidden p-4 active:cursor-grabbing sm:p-8"
+                onPointerDown={handlePointerDown}
+                onPointerUp={handlePointerEnd}
+                onPointerCancel={handlePointerEnd}
+              >
                 <img
                   src={slide.src}
                   alt={slide.alt}
-                  className="max-h-full w-full max-w-full object-contain select-none"
+                  className="max-h-full w-full max-w-full select-none object-contain"
                   draggable={false}
                 />
 
@@ -103,7 +138,7 @@ function ProjectGallery({ gallery = [], label = 'UI/UX Design' }) {
                   <button
                     type="button"
                     onClick={() => go(-1)}
-                    className="bg-card/96 border-border text-primary absolute top-1/2 left-3 inline-flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border shadow-soft backdrop-blur-sm transition-colors duration-150 hover:bg-surface"
+                    className="bg-card/96 border-border text-primary absolute top-1/2 left-3 inline-flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border shadow-soft backdrop-blur-sm transition-colors duration-150 hover:bg-surface sm:h-12 sm:w-12"
                     aria-label="Previous image"
                   >
                     <ArrowLeft size={18} />
@@ -114,7 +149,7 @@ function ProjectGallery({ gallery = [], label = 'UI/UX Design' }) {
                   <button
                     type="button"
                     onClick={() => go(1)}
-                    className="bg-card/96 border-border text-primary absolute top-1/2 right-3 inline-flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border shadow-soft backdrop-blur-sm transition-colors duration-150 hover:bg-surface"
+                    className="bg-card/96 border-border text-primary absolute top-1/2 right-3 inline-flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border shadow-soft backdrop-blur-sm transition-colors duration-150 hover:bg-surface sm:h-12 sm:w-12"
                     aria-label="Next image"
                   >
                     <ArrowRight size={18} />

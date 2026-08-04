@@ -143,7 +143,7 @@ function SetupOverview() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="grid gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:items-stretch"
         >
-          <div className="flex flex-col gap-5 rounded-4xl sm:p-2">
+          <div className="flex flex-col gap-5 rounded-4xl sm:px-2 sm:pt-2">
             <div className="bg-card border-border text-muted inline-flex w-fit items-center gap-3 rounded-full border px-4 py-2 text-sm">
               <UserRound size={16} className="text-primary" />
               <span>About Me</span>

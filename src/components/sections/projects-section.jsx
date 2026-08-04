@@ -57,6 +57,9 @@ const projects = [
       'Developed the backend API using Django REST Framework and MySQL with AI-assisted development support.',
     ],
     stack: ['Figma', 'React.js', 'Tailwind CSS', 'Django REST Framework', 'MySQL'],
+    liveUrl: 'https://demo-hivemate.markeringonzalvo.site',
+    notice:
+      'The backend is not configured and may be broken. This site is available for frontend demonstration purposes only.',
     gallery: [
       { src: hivemateLanding, alt: 'Hivemate landing page', label: 'Landing Page' },
       { src: hivemateRegister, alt: 'Hivemate registration page', label: 'Register Page' },
