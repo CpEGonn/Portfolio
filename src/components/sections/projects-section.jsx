@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { motion } from 'motion/react'
+import { useEffect, useRef, useState } from "react";
+import { motion } from "motion/react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -10,394 +10,454 @@ import {
   FolderOpen,
   GraduationCap,
   Microchip,
-} from 'lucide-react'
-import ProjectDetailsModal from '../ui/project-details-modal'
-import { cn } from '../../lib/utils'
-import hivemateLanding from '../../assets/HivemateAssets/Landing Page.png'
-import hivemateDashboard from '../../assets/HivemateAssets/Main Dashboard Page.png'
-import hivemateDashboardModal1 from '../../assets/HivemateAssets/Main Dashboard Page - popup1.png'
-import hivemateDashboardModal2 from '../../assets/HivemateAssets/Main Dashboard Page - popup2.png'
-import hivemateAnnouncement from '../../assets/HivemateAssets/Make Aannouncement Page.png'
-import hivemateBills from '../../assets/HivemateAssets/Manage Bills Page.png'
-import hivemateBillsModal1 from '../../assets/HivemateAssets/Manage Bills Page - popup1.png'
-import hivemateBillsModal2 from '../../assets/HivemateAssets/Manage Bills Page - popup2.png'
-import hivemateSchedule from '../../assets/HivemateAssets/Manage Schedule Page.png'
-import hivemateRegister from '../../assets/HivemateAssets/RegisterPage.png'
+} from "lucide-react";
+import ProjectDetailsModal from "../ui/project-details-modal";
+import { cn } from "../../lib/utils";
+import hivemateLanding from "../../assets/HivemateAssets/Landing Page.png";
+import hivemateDashboard from "../../assets/HivemateAssets/Main Dashboard Page.png";
+import hivemateDashboardModal1 from "../../assets/HivemateAssets/Main Dashboard Page - popup1.png";
+import hivemateDashboardModal2 from "../../assets/HivemateAssets/Main Dashboard Page - popup2.png";
+import hivemateAnnouncement from "../../assets/HivemateAssets/Make Aannouncement Page.png";
+import hivemateBills from "../../assets/HivemateAssets/Manage Bills Page.png";
+import hivemateBillsModal1 from "../../assets/HivemateAssets/Manage Bills Page - popup1.png";
+import hivemateBillsModal2 from "../../assets/HivemateAssets/Manage Bills Page - popup2.png";
+import hivemateSchedule from "../../assets/HivemateAssets/Manage Schedule Page.png";
+import hivemateRegister from "../../assets/HivemateAssets/RegisterPage.png";
 
 const projects = [
   {
-    id: 'nextchika',
-    title: 'NextChika — Real-Time Blog Platform',
-    label: 'Featured Full-Stack Project',
-    period: '2026 / Personal project',
-    icon: Globe,
-    summary:
-      'A full-stack blogging platform where users can create posts, upload images, search articles, comment on posts, and see live viewers in real time.',
-    highlights: [
-      'Built a realtime blog platform with authentication, post creation, image uploads, comments, and search.',
-      'Integrated Convex for the database, backend functions, storage, and live presence updates.',
-      'Created a responsive interface with dark mode, mobile navigation, and form validation.',
-    ],
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Convex', 'Better Auth'],
-    liveUrl: 'https://next-chika.markeringonzalvo.site',
-  },
-  {
-    id: 'thesis',
-    title: 'Job Postings and Credential Screening Web Application',
-    label: 'Featured Thesis Project',
-    period: '2026 / Thesis project',
+    id: "thesis",
+    title: "Job Postings and Credential Screening Web Application",
+    label: "Web Application",
+    period: "2026 / Thesis project",
     icon: GraduationCap,
     summary:
-      'A completed alumni-focused job posting and credential screening web application that uses a trained E5-base-v2 model for credential-to-job matching and relevance analysis.',
+      "A completed alumni-focused job posting and credential screening web application that uses a trained E5-base-v2 model for credential-to-job matching and relevance analysis.",
     highlights: [
-      'Developed an alumni-focused platform that matches user credentials with job requirements through relevance-based model scoring.',
-      'Built the frontend with React.js and Tailwind CSS, and developed the backend with FastAPI and Supabase, including API integration, database operations, and core system workflows.',
-      'Used development tools throughout the build process for implementation support, debugging, and code refinement.',
+      "Developed an alumni-focused platform that matches user credentials with job requirements through relevance-based model scoring.",
+      "Built the frontend with React.js and Tailwind CSS, and developed the backend with FastAPI and Supabase, including API integration, database operations, and core system workflows.",
+      "Used development tools throughout the build process for implementation support, debugging, and code refinement.",
     ],
-    stack: ['React.js', 'Tailwind CSS', 'FastAPI', 'Supabase', 'E5-base-v2'],
-    liveUrl: 'https://thesis-clone.markeringonzalvo.site',
+    stack: ["React.js", "Tailwind CSS", "FastAPI", "Supabase", "E5-base-v2"],
+    liveUrl: "https://thesis-clone.markeringonzalvo.site",
     notice:
-      'This website is a landing-page clone of the actual project. The original project is not currently available to the public due to institutional considerations.',
+      "This website is a landing-page clone of the actual project. The original project is not currently available to the public due to institutional considerations.",
   },
   {
-    id: 'dorm',
-    title: 'Dorm Management Website',
-    label: 'Web Application',
-    period: '2025 / Web application',
+    id: "nextchika",
+    title: "NextChika — Real-Time Blog Platform",
+    label: "Web Application",
+    period: "2026 / Personal project",
     icon: Globe,
     summary:
-      'A dorm management website designed around usability, clear workflow structure, and practical full-stack implementation.',
+      "A full-stack blogging platform where users can create posts, upload images, search articles, comment on posts, and see live viewers in real time.",
     highlights: [
-      'Designed the UI/UX in Figma, focusing on usability and simple workflow design.',
-      'Implemented the frontend with React.js and Tailwind CSS, using AI tools to support code generation and learning modern frontend practices.',
-      'Developed the backend API using Django REST Framework and MySQL with AI-assisted development support.',
+      "Built a realtime blog platform with authentication, post creation, image uploads, comments, and search.",
+      "Integrated Convex for the database, backend functions, storage, and live presence updates.",
+      "Created a responsive interface with dark mode, mobile navigation, and form validation.",
     ],
-    stack: ['Figma', 'React.js', 'Tailwind CSS', 'Django REST Framework', 'MySQL'],
-    liveUrl: 'https://demo-hivemate.markeringonzalvo.site',
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Convex", "Better Auth"],
+    liveUrl: "https://next-chika.markeringonzalvo.site",
+  },
+  {
+    id: "dorm",
+    title: "Dorm Management Website",
+    label: "Web Application",
+    period: "2025 / Web application",
+    icon: Globe,
+    summary:
+      "A dorm management website designed around usability, clear workflow structure, and practical full-stack implementation.",
+    highlights: [
+      "Designed the UI/UX in Figma, focusing on usability and simple workflow design.",
+      "Implemented the frontend with React.js and Tailwind CSS, using AI tools to support code generation and learning modern frontend practices.",
+      "Developed the backend API using Django REST Framework and MySQL with AI-assisted development support.",
+    ],
+    stack: [
+      "Figma",
+      "React.js",
+      "Tailwind CSS",
+      "Django REST Framework",
+      "MySQL",
+    ],
+    liveUrl: "https://demo-hivemate.markeringonzalvo.site",
     notice:
-      'The backend is not configured and may be broken. This site is available for frontend demonstration purposes only.',
+      "The backend is not configured and may be broken. This site is available for frontend demonstration purposes only.",
     gallery: [
-      { src: hivemateLanding, alt: 'Hivemate landing page', label: 'Landing Page' },
-      { src: hivemateRegister, alt: 'Hivemate registration page', label: 'Register Page' },
-      { src: hivemateDashboard, alt: 'Hivemate main dashboard', label: 'Main Dashboard Page' },
-      { src: hivemateDashboardModal1, alt: 'Hivemate dashboard popup', label: 'Dashboard Modal' },
-      { src: hivemateDashboardModal2, alt: 'Hivemate dashboard popup', label: 'Dashboard Modal' },
-      { src: hivemateBills, alt: 'Hivemate manage bills page', label: 'Manage Bills Page' },
-      { src: hivemateBillsModal1, alt: 'Hivemate bills popup', label: 'Bills Modal' },
-      { src: hivemateBillsModal2, alt: 'Hivemate bills popup', label: 'Bills Modal' },
-      { src: hivemateSchedule, alt: 'Hivemate manage schedule page', label: 'Manage Schedule Page' },
-      { src: hivemateAnnouncement, alt: 'Hivemate make announcement page', label: 'Announcement Page' },
+      {
+        src: hivemateLanding,
+        alt: "Hivemate landing page",
+        label: "Landing Page",
+      },
+      {
+        src: hivemateRegister,
+        alt: "Hivemate registration page",
+        label: "Register Page",
+      },
+      {
+        src: hivemateDashboard,
+        alt: "Hivemate main dashboard",
+        label: "Main Dashboard Page",
+      },
+      {
+        src: hivemateDashboardModal1,
+        alt: "Hivemate dashboard popup",
+        label: "Dashboard Modal",
+      },
+      {
+        src: hivemateDashboardModal2,
+        alt: "Hivemate dashboard popup",
+        label: "Dashboard Modal",
+      },
+      {
+        src: hivemateBills,
+        alt: "Hivemate manage bills page",
+        label: "Manage Bills Page",
+      },
+      {
+        src: hivemateBillsModal1,
+        alt: "Hivemate bills popup",
+        label: "Bills Modal",
+      },
+      {
+        src: hivemateBillsModal2,
+        alt: "Hivemate bills popup",
+        label: "Bills Modal",
+      },
+      {
+        src: hivemateSchedule,
+        alt: "Hivemate manage schedule page",
+        label: "Manage Schedule Page",
+      },
+      {
+        src: hivemateAnnouncement,
+        alt: "Hivemate make announcement page",
+        label: "Announcement Page",
+      },
     ],
   },
   {
-    id: 'stored-program',
-    title: 'Stored Program Machine for Car Kit Control Using Basic Digital Components',
-    label: 'Hardware Project',
-    period: '2025 / Digital logic project',
+    id: "stored-program",
+    title:
+      "Stored Program Machine for Car Kit Control Using Basic Digital Components",
+    label: "Hardware Project",
+    period: "2025 / Digital logic project",
     icon: Cpu,
     summary:
-      'A stored-program-based control circuit for a four-wheel car kit built using basic digital logic components.',
+      "A stored-program-based control circuit for a four-wheel car kit built using basic digital logic components.",
     highlights: [
-      'Designed and implemented a stored-program-based control circuit for a four-wheel car kit using basic digital logic components.',
-      'Performed hardware assembly, wiring, and functional testing of the circuit design.',
+      "Designed and implemented a stored-program-based control circuit for a four-wheel car kit using basic digital logic components.",
+      "Performed hardware assembly, wiring, and functional testing of the circuit design.",
     ],
-    stack: ['Digital Logic', 'Control Circuit Design', 'Hardware Testing'],
+    stack: ["Digital Logic", "Control Circuit Design", "Hardware Testing"],
   },
   {
-    id: 'firefighting-car',
-    title: 'ESP32-Based Autonomous Firefighting Car',
-    label: 'Embedded Systems',
-    period: '2025 / Embedded systems project',
+    id: "firefighting-car",
+    title: "ESP32-Based Autonomous Firefighting Car",
+    label: "Embedded Systems",
+    period: "2025 / Embedded systems project",
     icon: Microchip,
     summary:
-      'A four-wheel car kit designed to automatically extinguish small fires and avoid obstacles using ESP32 and sensor-driven control.',
+      "A four-wheel car kit designed to automatically extinguish small fires and avoid obstacles using ESP32 and sensor-driven control.",
     highlights: [
-      'Designed the circuit diagram of a four-wheeled car kit that automatically extinguishes small fires and avoids obstacles using ESP32 and various sensors.',
-      'Programmed the ESP32 to control motors, read sensor data, and trigger obstacle avoidance and fire-extinguishing behavior.',
+      "Designed the circuit diagram of a four-wheeled car kit that automatically extinguishes small fires and avoids obstacles using ESP32 and various sensors.",
+      "Programmed the ESP32 to control motors, read sensor data, and trigger obstacle avoidance and fire-extinguishing behavior.",
     ],
-    stack: ['ESP32', 'Sensors', 'Motor Control', 'Embedded Programming'],
+    stack: ["ESP32", "Sensors", "Motor Control", "Embedded Programming"],
   },
   {
-    id: 'lan-checker',
-    title: 'DIY Ethernet LAN Cable Checker',
-    label: 'Electronics Project',
-    period: '2025 / PCB design and fabrication',
+    id: "lan-checker",
+    title: "DIY Ethernet LAN Cable Checker",
+    label: "Electronics Project",
+    period: "2025 / PCB design and fabrication",
     icon: Cable,
     summary:
-      'A functional LAN cable checker designed from schematic stage through PCB layout, fabrication, and final assembly.',
+      "A functional LAN cable checker designed from schematic stage through PCB layout, fabrication, and final assembly.",
     highlights: [
-      'Designed the schematic diagram and PCB layout using EasyEDA.',
-      'Performed hardware assembly and the manual PCB etching process.',
+      "Designed the schematic diagram and PCB layout using EasyEDA.",
+      "Performed hardware assembly and the manual PCB etching process.",
     ],
-    stack: ['EasyEDA', 'PCB Layout', 'PCB Etching', 'Hardware Assembly'],
+    stack: ["EasyEDA", "PCB Layout", "PCB Etching", "Hardware Assembly"],
   },
-]
+];
 
 function ProjectsSection() {
-  const railRef = useRef(null)
+  const railRef = useRef(null);
   const dragStateRef = useRef({
     isDragging: false,
     startX: 0,
     startScrollLeft: 0,
-  })
-  const [activeProjectId, setActiveProjectId] = useState(projects[0].id)
-  const [isDetailOpen, setIsDetailOpen] = useState(false)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
-  const [isRailDragging, setIsRailDragging] = useState(false)
-  const activeProject = projects.find(({ id }) => id === activeProjectId) ?? projects[0]
+  });
+  const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isRailDragging, setIsRailDragging] = useState(false);
+  const activeProject =
+    projects.find(({ id }) => id === activeProjectId) ?? projects[0];
 
   useEffect(() => {
-    const railElement = railRef.current
+    const railElement = railRef.current;
 
     if (!railElement) {
-      return undefined
+      return undefined;
     }
 
     const syncScrollState = () => {
-      const { scrollLeft, clientWidth, scrollWidth } = railElement
-      setCanScrollLeft(scrollLeft > 4)
-      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 4)
-    }
+      const { scrollLeft, clientWidth, scrollWidth } = railElement;
+      setCanScrollLeft(scrollLeft > 4);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 4);
+    };
 
-    syncScrollState()
-    railElement.addEventListener('scroll', syncScrollState, { passive: true })
-    window.addEventListener('resize', syncScrollState)
+    syncScrollState();
+    railElement.addEventListener("scroll", syncScrollState, { passive: true });
+    window.addEventListener("resize", syncScrollState);
 
     return () => {
-      railElement.removeEventListener('scroll', syncScrollState)
-      window.removeEventListener('resize', syncScrollState)
-    }
-  }, [])
+      railElement.removeEventListener("scroll", syncScrollState);
+      window.removeEventListener("resize", syncScrollState);
+    };
+  }, []);
 
   function openProject(projectId) {
     // eslint-disable-next-line react-hooks/immutability -- intentional DOM dataset write in event handler
-    document.documentElement.dataset.projectModalOpen = 'true'
-    window.dispatchEvent(new CustomEvent('project-modal-state', { detail: { isOpen: true } }))
-    setActiveProjectId(projectId)
-    setIsDetailOpen(true)
+    document.documentElement.dataset.projectModalOpen = "true";
+    window.dispatchEvent(
+      new CustomEvent("project-modal-state", { detail: { isOpen: true } }),
+    );
+    setActiveProjectId(projectId);
+    setIsDetailOpen(true);
   }
 
   function closeProject() {
-    delete document.documentElement.dataset.projectModalOpen
-    window.dispatchEvent(new CustomEvent('project-modal-state', { detail: { isOpen: false } }))
-    setIsDetailOpen(false)
+    delete document.documentElement.dataset.projectModalOpen;
+    window.dispatchEvent(
+      new CustomEvent("project-modal-state", { detail: { isOpen: false } }),
+    );
+    setIsDetailOpen(false);
   }
 
   function scrollProjects(direction) {
-    const railElement = railRef.current
+    const railElement = railRef.current;
 
     if (!railElement) {
-      return
+      return;
     }
 
     railElement.scrollBy({
       left: direction * 320,
-      behavior: 'smooth',
-    })
+      behavior: "smooth",
+    });
   }
 
   function handleRailPointerDown(event) {
-    const railElement = railRef.current
+    const railElement = railRef.current;
 
     if (!railElement) {
-      return
+      return;
     }
 
     dragStateRef.current = {
       isDragging: true,
       startX: event.clientX,
       startScrollLeft: railElement.scrollLeft,
-    }
-    setIsRailDragging(false)
+    };
+    setIsRailDragging(false);
   }
 
   function handleRailPointerMove(event) {
-    const railElement = railRef.current
+    const railElement = railRef.current;
 
     if (!railElement || !dragStateRef.current.isDragging) {
-      return
+      return;
     }
 
-    const distance = event.clientX - dragStateRef.current.startX
+    const distance = event.clientX - dragStateRef.current.startX;
 
     if (Math.abs(distance) > 6) {
-      setIsRailDragging(true)
+      setIsRailDragging(true);
     }
 
-    railElement.scrollLeft = dragStateRef.current.startScrollLeft - distance
+    railElement.scrollLeft = dragStateRef.current.startScrollLeft - distance;
   }
 
   function handleRailPointerUp() {
-    dragStateRef.current.isDragging = false
+    dragStateRef.current.isDragging = false;
 
     window.setTimeout(() => {
-      setIsRailDragging(false)
-    }, 0)
+      setIsRailDragging(false);
+    }, 0);
   }
 
   return (
     <>
-      <section id="projects" className="border-border scroll-mt-28 border-t py-16 sm:py-20">
+      <section
+        id="projects"
+        className="border-border scroll-mt-28 border-t py-16 sm:py-20"
+      >
         <div className="grid gap-6">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.25 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="bg-surface border-border rounded-4xl border p-6 sm:p-8"
-        >
-          <div className="flex flex-col items-center gap-5 text-center">
-            <div className="bg-card border-border text-muted inline-flex w-fit items-center gap-3 rounded-full border px-4 py-2 text-sm">
-              <FolderOpen size={16} className="text-primary" />
-              <span>Projects</span>
-            </div>
-
-            <div className="flex flex-col items-center gap-4">
-              <h2 className="text-primary max-w-4xl text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-                Selected projects across software and hardware.
-              </h2>
-              <p className="text-muted max-w-3xl text-base leading-8">
-                A focused selection of academic and practical work that reflects my experience in frontend development, backend integration, embedded systems, and hardware implementation.
-              </p>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.2 }}
-          transition={{ duration: 0.55, ease: 'easeOut' }}
-          className="grid gap-4"
-        >
-
-          <div className="relative overflow-hidden">
-            {canScrollLeft && (
-              <div className="pointer-events-none absolute top-0 bottom-2 left-0 z-10 w-40 bg-linear-to-r from-bg via-bg/72 via-55% to-transparent" />
-            )}
-
-            {canScrollRight && (
-              <div className="pointer-events-none absolute top-0 right-0 bottom-2 z-10 w-40 bg-linear-to-l from-bg via-bg/72 via-55% to-transparent" />
-            )}
-
-            {canScrollLeft && (
-              <div className="absolute top-1/2 left-0 z-20 hidden -translate-y-1/2 sm:block">
-                <button
-                  type="button"
-                  onClick={() => scrollProjects(-1)}
-                  className="bg-card/96 border-border text-primary inline-flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border shadow-soft backdrop-blur-sm transition-[background-color,border-color,color,transform] duration-150 hover:bg-surface"
-                  aria-label="Scroll projects left"
-                >
-                  <ArrowLeft size={18} />
-                </button>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.25 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="bg-surface border-border rounded-4xl border p-6 sm:p-8"
+          >
+            <div className="flex flex-col items-center gap-5 text-center">
+              <div className="bg-card border-border text-muted inline-flex w-fit items-center gap-3 rounded-full border px-4 py-2 text-sm">
+                <FolderOpen size={16} className="text-primary" />
+                <span>Projects</span>
               </div>
-            )}
 
-            {canScrollRight && (
-              <div className="absolute top-1/2 right-0 z-20 hidden -translate-y-1/2 sm:block">
-                <button
-                  type="button"
-                  onClick={() => scrollProjects(1)}
-                  className="bg-card/96 border-border text-primary inline-flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border shadow-soft backdrop-blur-sm transition-[background-color,border-color,color,transform] duration-150 hover:bg-surface"
-                  aria-label="Scroll projects right"
-                >
-                  <ArrowRight size={18} />
-                </button>
+              <div className="flex flex-col items-center gap-4">
+                <h2 className="text-primary max-w-4xl text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+                  Selected projects across software and hardware.
+                </h2>
+                <p className="text-muted max-w-3xl text-base leading-8">
+                  A focused selection of academic and practical work that
+                  reflects my experience in frontend development, backend
+                  integration, embedded systems, and hardware implementation.
+                </p>
               </div>
-            )}
+            </div>
+          </motion.div>
 
-            <div
-              ref={railRef}
-              className={cn(
-                'project-scrollbar overflow-x-auto px-1 pb-2 select-none',
-                isRailDragging ? 'cursor-grabbing' : 'cursor-grab',
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.55, ease: "easeOut" }}
+            className="grid gap-4"
+          >
+            <div className="relative overflow-hidden">
+              {canScrollLeft && (
+                <div className="pointer-events-none absolute top-0 bottom-2 left-0 z-10 w-40 bg-linear-to-r from-bg via-bg/72 via-55% to-transparent" />
               )}
-              onPointerDown={handleRailPointerDown}
-              onPointerMove={handleRailPointerMove}
-              onPointerUp={handleRailPointerUp}
-              onPointerLeave={handleRailPointerUp}
-              onPointerCancel={handleRailPointerUp}
-            >
-              <div className="flex min-w-max gap-3 pl-1 pr-8 sm:pr-10">
-              {projects.map((project) => {
-                const ProjectIcon = project.icon
-                const isActive = isDetailOpen && project.id === activeProjectId
 
-                return (
+              {canScrollRight && (
+                <div className="pointer-events-none absolute top-0 right-0 bottom-2 z-10 w-40 bg-linear-to-l from-bg via-bg/72 via-55% to-transparent" />
+              )}
+
+              {canScrollLeft && (
+                <div className="absolute top-1/2 left-0 z-20 hidden -translate-y-1/2 sm:block">
                   <button
-                    key={project.id}
                     type="button"
-                    onClick={() => {
-                      if (!isRailDragging) {
-                        openProject(project.id)
-                      }
-                    }}
-                    className={cn(
-                      'bg-card border-border flex w-[18rem] shrink-0 cursor-pointer flex-col gap-4 rounded-3xl border px-5 py-5 text-left transition-colors duration-75 ease-linear',
-                      isActive && 'bg-primary text-bg border-primary',
-                    )}
-                    aria-pressed={isActive}
+                    onClick={() => scrollProjects(-1)}
+                    className="bg-card/96 border-border text-primary inline-flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border shadow-soft backdrop-blur-sm transition-[background-color,border-color,color,transform] duration-150 hover:bg-surface"
+                    aria-label="Scroll projects left"
                   >
-                    <div className="flex items-center justify-between gap-3">
-                      <div
-                        className={cn(
-                          'bg-surface border-border text-primary inline-flex rounded-2xl border p-3 transition-colors duration-75 ease-linear',
-                          isActive && 'bg-bg border-transparent text-primary',
-                        )}
-                      >
-                        <ProjectIcon size={18} />
-                      </div>
-                      <ChevronRight
-                        size={18}
-                        className={cn(isActive ? 'text-bg' : 'text-secondary')}
-                      />
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                      <p
-                        className={cn(
-                          'text-primary text-xs font-semibold uppercase tracking-[0.16em] transition-colors duration-75 ease-linear',
-                          isActive && 'text-bg',
-                        )}
-                      >
-                        {project.label}
-                      </p>
-                      <h3
-                        className={cn(
-                          'text-primary text-xl font-semibold tracking-tight transition-colors duration-75 ease-linear',
-                          isActive && 'text-bg',
-                        )}
-                      >
-                        {project.title}
-                      </h3>
-                    </div>
-
-                    <div className="mt-auto flex items-center justify-between gap-3">
-                      <p
-                        className={cn(
-                          'text-muted text-sm leading-7 transition-colors duration-75 ease-linear',
-                          isActive && 'text-bg/80',
-                        )}
-                      >
-                        {project.period}
-                      </p>
-                      <span
-                        className={cn(
-                          'text-primary text-xs font-semibold uppercase tracking-[0.16em] transition-colors duration-75 ease-linear',
-                          isActive ? 'text-bg' : 'text-secondary',
-                        )}
-                      >
-                        View
-                      </span>
-                    </div>
+                    <ArrowLeft size={18} />
                   </button>
-                )
-              })}
+                </div>
+              )}
+
+              {canScrollRight && (
+                <div className="absolute top-1/2 right-0 z-20 hidden -translate-y-1/2 sm:block">
+                  <button
+                    type="button"
+                    onClick={() => scrollProjects(1)}
+                    className="bg-card/96 border-border text-primary inline-flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border shadow-soft backdrop-blur-sm transition-[background-color,border-color,color,transform] duration-150 hover:bg-surface"
+                    aria-label="Scroll projects right"
+                  >
+                    <ArrowRight size={18} />
+                  </button>
+                </div>
+              )}
+
+              <div
+                ref={railRef}
+                className={cn(
+                  "project-scrollbar overflow-x-auto px-1 pb-2 select-none",
+                  isRailDragging ? "cursor-grabbing" : "cursor-grab",
+                )}
+                onPointerDown={handleRailPointerDown}
+                onPointerMove={handleRailPointerMove}
+                onPointerUp={handleRailPointerUp}
+                onPointerLeave={handleRailPointerUp}
+                onPointerCancel={handleRailPointerUp}
+              >
+                <div className="flex min-w-max gap-3 pl-1 pr-8 sm:pr-10">
+                  {projects.map((project) => {
+                    const ProjectIcon = project.icon;
+                    const isActive =
+                      isDetailOpen && project.id === activeProjectId;
+
+                    return (
+                      <button
+                        key={project.id}
+                        type="button"
+                        onClick={() => {
+                          if (!isRailDragging) {
+                            openProject(project.id);
+                          }
+                        }}
+                        className={cn(
+                          "bg-card border-border flex w-[18rem] shrink-0 cursor-pointer flex-col gap-4 rounded-3xl border px-5 py-5 text-left transition-colors duration-75 ease-linear",
+                          isActive && "bg-primary text-bg border-primary",
+                        )}
+                        aria-pressed={isActive}
+                      >
+                        <div className="flex items-center justify-between gap-3">
+                          <div
+                            className={cn(
+                              "bg-surface border-border text-primary inline-flex rounded-2xl border p-3 transition-colors duration-75 ease-linear",
+                              isActive &&
+                                "bg-bg border-transparent text-primary",
+                            )}
+                          >
+                            <ProjectIcon size={18} />
+                          </div>
+                          <ChevronRight
+                            size={18}
+                            className={cn(
+                              isActive ? "text-bg" : "text-secondary",
+                            )}
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                          <p
+                            className={cn(
+                              "text-primary text-xs font-semibold uppercase tracking-[0.16em] transition-colors duration-75 ease-linear",
+                              isActive && "text-bg",
+                            )}
+                          >
+                            {project.label}
+                          </p>
+                          <h3
+                            className={cn(
+                              "text-primary text-xl font-semibold tracking-tight transition-colors duration-75 ease-linear",
+                              isActive && "text-bg",
+                            )}
+                          >
+                            {project.title}
+                          </h3>
+                        </div>
+
+                        <div className="mt-auto flex items-center justify-between gap-3">
+                          <p
+                            className={cn(
+                              "text-muted text-sm leading-7 transition-colors duration-75 ease-linear",
+                              isActive && "text-bg/80",
+                            )}
+                          >
+                            {project.period}
+                          </p>
+                          <span
+                            className={cn(
+                              "text-primary text-xs font-semibold uppercase tracking-[0.16em] transition-colors duration-75 ease-linear",
+                              isActive ? "text-bg" : "text-secondary",
+                            )}
+                          >
+                            View
+                          </span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -407,7 +467,7 @@ function ProjectsSection() {
         project={activeProject}
       />
     </>
-  )
+  );
 }
 
-export default ProjectsSection
+export default ProjectsSection;
