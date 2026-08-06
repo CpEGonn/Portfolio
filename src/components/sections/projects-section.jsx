@@ -26,6 +26,22 @@ import hivemateRegister from '../../assets/HivemateAssets/RegisterPage.png'
 
 const projects = [
   {
+    id: 'nextchika',
+    title: 'NextChika — Real-Time Blog Platform',
+    label: 'Featured Full-Stack Project',
+    period: '2026 / Personal project',
+    icon: Globe,
+    summary:
+      'A full-stack blogging platform where users can create posts, upload images, search articles, comment on posts, and see live viewers in real time.',
+    highlights: [
+      'Built a realtime blog platform with authentication, post creation, image uploads, comments, and search.',
+      'Integrated Convex for the database, backend functions, storage, and live presence updates.',
+      'Created a responsive interface with dark mode, mobile navigation, and form validation.',
+    ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Convex', 'Better Auth'],
+    liveUrl: 'https://next-chika.markeringonzalvo.site',
+  },
+  {
     id: 'thesis',
     title: 'Job Postings and Credential Screening Web Application',
     label: 'Featured Thesis Project',
