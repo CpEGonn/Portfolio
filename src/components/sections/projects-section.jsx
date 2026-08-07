@@ -45,7 +45,7 @@ const projects = [
   },
   {
     id: "nextchika",
-    title: "NextChika — Real-Time Blog Platform",
+    title: "NextChika: Real-Time Blog Platform",
     label: "Web Application",
     period: "2026 / Personal project",
     icon: Globe,
@@ -58,6 +58,28 @@ const projects = [
     ],
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Convex", "Better Auth"],
     liveUrl: "https://next-chika.markeringonzalvo.site",
+  },
+  {
+    id: "shortcut-atlas",
+    title: "ShortCut Atlas: Full-Stack URL Shortener",
+    label: "Web Application",
+    period: "2026 / Personal project",
+    icon: Globe,
+    summary:
+      "A deployed URL-shortening web app for creating, copying, tracking, and redirecting compact links with persistent cloud storage.",
+    highlights: [
+      "Built the responsive full-stack URL shortener with persistent link records, visit tracking, redirects, and production deployment.",
+      "Integrated and tested frontend-to-backend synchronization with Neon Postgres for reliable create and retrieval flows.",
+      "Used agentic coding workflows for implementation, debugging, production log analysis, deployment fixes, and automated verification.",
+    ],
+    stack: [
+      "React + Vite",
+      "Node.js + Express",
+      "Neon Postgres",
+      "Vercel",
+      "Agentic coding workflows",
+    ],
+    liveUrl: "https://short-cut-atlas.vercel.app",
   },
   {
     id: "dorm",
