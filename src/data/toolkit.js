@@ -47,6 +47,7 @@ export const toolkitCategories = [
       { name: "Next.js", icon: SiNextdotjs, featured: true},
       { name: "Tailwind CSS", icon: SiTailwindcss, featured: true },
       { name: "JavaScript", icon: SiJavascript, featured: true },
+      { name: "FlutterFlow", icon: SiFlutter, featured: true },
       { name: "Figma", icon: SiFigma },
     ],
   },
@@ -85,7 +86,6 @@ export const toolkitCategories = [
       { name: "VS Code", icon: VscVscode },
       { name: "Postman", icon: SiPostman },
       { name: "Vercel", icon: SiVercel },
-      { name: "FlutterFlow", icon: SiFlutter, featured: true },
     ],
   },
   {
