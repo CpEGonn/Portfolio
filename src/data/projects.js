@@ -18,7 +18,7 @@ import shortcutThumbnail from "../assets/Project Tumbnail/ShortCut ATlas-Thumbna
 export const projects = [
   {
     id: "thesis",
-    title: "Job Postings and Credential Screening Web Application",
+    title: "TEST deploy Job Postings and Credential Screening Web Application",
     label: "Web Application",
     period: "2026 / Thesis project",
     icon: GraduationCap,
