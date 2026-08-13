@@ -10,9 +10,11 @@ function ProjectsSection() {
   const dragStateRef = useRef({
     isDragging: false,
     hasMoved: false,
+    gesture: null,
     pointerId: null,
     projectId: null,
     startX: 0,
+    startY: 0,
     startScrollLeft: 0,
   });
   const scrollStateRef = useRef({ left: false, right: true });
@@ -105,12 +107,14 @@ function ProjectsSection() {
     dragStateRef.current = {
       isDragging: true,
       hasMoved: false,
+      gesture: null,
       pointerId: event.pointerId,
       projectId:
         event.target instanceof Element
           ? event.target.closest("[data-project-id]")?.dataset.projectId ?? null
           : null,
       startX: event.clientX,
+      startY: event.clientY,
       startScrollLeft: railElement.scrollLeft,
     };
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -127,12 +131,25 @@ function ProjectsSection() {
       return;
     }
 
-    const distance = event.clientX - dragStateRef.current.startX;
-    if (!dragStateRef.current.hasMoved && Math.abs(distance) > 6) {
+    const horizontalDistance = event.clientX - dragStateRef.current.startX;
+    const verticalDistance = event.clientY - dragStateRef.current.startY;
+
+    if (
+      !dragStateRef.current.hasMoved &&
+      Math.hypot(horizontalDistance, verticalDistance) > 8
+    ) {
       dragStateRef.current.hasMoved = true;
-      setIsRailDragging(true);
+      dragStateRef.current.gesture =
+        Math.abs(horizontalDistance) >= Math.abs(verticalDistance)
+          ? "horizontal"
+          : "vertical";
+      setIsRailDragging(dragStateRef.current.gesture === "horizontal");
     }
-    railElement.scrollLeft = dragStateRef.current.startScrollLeft - distance;
+
+    if (dragStateRef.current.gesture === "horizontal") {
+      railElement.scrollLeft =
+        dragStateRef.current.startScrollLeft - horizontalDistance;
+    }
   }
 
   function handleRailPointerUp(event) {
@@ -149,6 +166,15 @@ function ProjectsSection() {
     if (!hasMoved && projectId) {
       openProject(projectId);
     }
+  }
+
+  function handleRailPointerCancel(event) {
+    if (dragStateRef.current.pointerId !== event.pointerId) return;
+
+    dragStateRef.current.isDragging = false;
+    dragStateRef.current.hasMoved = true;
+    dragStateRef.current.pointerId = null;
+    setIsRailDragging(false);
   }
 
   return (
@@ -206,7 +232,7 @@ function ProjectsSection() {
               onPointerDown={handleRailPointerDown}
               onPointerMove={handleRailPointerMove}
               onPointerUp={handleRailPointerUp}
-              onPointerCancel={handleRailPointerUp}
+              onPointerCancel={handleRailPointerCancel}
             >
               <div className="flex min-w-max gap-3 pr-6 sm:gap-4 sm:pl-1 sm:pr-10">
                 {projects.map((project) => (
