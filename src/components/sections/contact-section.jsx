@@ -48,10 +48,10 @@ function ContactSection() {
 
           <div className="flex flex-col items-center gap-4">
             <h2 className="text-primary text-3xl font-semibold tracking-tight sm:text-4xl">
-              Get in touch.
+              Get in touch
             </h2>
             <p className="text-muted max-w-xl text-base leading-8">
-              Email or reach out through the platforms below.
+              Email or reach out through the platforms below
             </p>
           </div>
         </div>

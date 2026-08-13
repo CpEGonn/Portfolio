@@ -1,134 +1,23 @@
 import { useState } from "react";
 import {
-  Badge,
-  BadgeCheck,
-  Braces,
   Code2,
   ChevronDown,
   ChevronUp,
   Cpu,
   GraduationCap,
-  Layers3,
   MapPinned,
-  MessageSquareText,
-  PencilRuler,
   ScanSearch,
   UserRound,
 } from "lucide-react";
 import { motion } from "motion/react";
-import {
-  SiFigma,
-  SiFlutter,
-  SiHtml5,
-  SiJavascript,
-  SiMysql,
-  SiPython,
-  SiReact,
-  SiSupabase,
-  SiTailwindcss,
-} from "react-icons/si";
-import { VscVscode } from "react-icons/vsc";
 import mapBlack from "../../assets/images/branding/map-black.webp";
 import mapWhite from "../../assets/images/branding/map-white.webp";
 import bsuLogo from "../../assets/images/bsu-logo.webp";
-
-const familiarTools = [
-  { label: "Python", icon: SiPython },
-  { label: "JavaScript", icon: SiJavascript },
-  { label: "Tailwind CSS", icon: SiTailwindcss },
-  { label: "FlutterFlow", icon: SiFlutter },
-  { label: "Supabase", icon: SiSupabase },
-  { label: "React", icon: SiReact },
-  { label: "Figma", icon: SiFigma },
-];
-
-const skillCollections = [
-  {
-    id: "frontend",
-    title: "Frontend and Interface",
-    description:
-      "The tools I use most when shaping layouts, components, and polished screens.",
-    icon: Layers3,
-    items: ["HTML and CSS", "React JS", "Tailwind CSS", "JavaScript", "Figma"],
-  },
-  {
-    id: "workflow",
-    title: "Tools and Workflow",
-    description:
-      "Platforms and software that support faster building, iteration, and delivery.",
-    icon: PencilRuler,
-    items: [
-      "FlutterFlow",
-      "Supabase",
-      "VS Code",
-      "MySQL",
-      "AutoCAD",
-      "SketchUp",
-    ],
-  },
-  {
-    id: "engineering",
-    title: "Engineering Foundation",
-    description:
-      "The technical base that supports my interest in practical systems and hardware.",
-    icon: Cpu,
-    items: [
-      "Python",
-      "Digital Logic Circuits",
-      "Microcontrollers",
-      "Arduino",
-      "ESP32",
-      "Schematic and PCB Layout",
-    ],
-  },
-  {
-    id: "soft",
-    title: "Soft Skills",
-    description:
-      "The personal strengths I bring into collaboration, communication, and day-to-day execution.",
-    icon: MessageSquareText,
-    items: [
-      "Able to work individually and as part of a team",
-      "Excellent organizational and time management skills",
-      "Strong problem-solving, critical thinking, and adaptability",
-      "Effective communication skills in Filipino and English",
-    ],
-  },
-];
-
-const skillIcons = {
-  "HTML and CSS": SiHtml5,
-  "React JS": SiReact,
-  "Tailwind CSS": SiTailwindcss,
-  JavaScript: SiJavascript,
-  Figma: SiFigma,
-  FlutterFlow: SiFlutter,
-  Supabase: SiSupabase,
-  "VS Code": VscVscode,
-  MySQL: SiMysql,
-  AutoCAD: PencilRuler,
-  SketchUp: PencilRuler,
-  Python: SiPython,
-  "Digital Logic Circuits": Braces,
-  Microcontrollers: Cpu,
-  Arduino: Badge,
-  ESP32: Cpu,
-  "Schematic and PCB Layout": PencilRuler,
-  "Able to work individually and as part of a team": BadgeCheck,
-  "Excellent organizational and time management skills": BadgeCheck,
-  "Strong problem-solving, critical thinking, and adaptability": BadgeCheck,
-  "Effective communication skills in Filipino and English": BadgeCheck,
-};
+import { featuredToolkitItems, toolkitCategories } from "../../data/toolkit";
+import ToolkitCategory from "./toolkit-category";
 
 function SetupOverview() {
   const [isAllSkillsVisible, setIsAllSkillsVisible] = useState(false);
-  const [activeSkillCollection, setActiveSkillCollection] = useState(
-    skillCollections[0].id,
-  );
-  const selectedSkillCollection =
-    skillCollections.find(({ id }) => id === activeSkillCollection) ??
-    skillCollections[0];
-  const SelectedIcon = selectedSkillCollection.icon;
 
   return (
     <section
@@ -152,12 +41,12 @@ function SetupOverview() {
             <div className="flex flex-col gap-4">
               <h2 className="text-primary max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
                 Computer engineering with both software and hardware
-                foundations.
+                foundations
               </h2>
               <p className="text-muted max-w-2xl text-base leading-8">
                 I build practical software interfaces while growing a solid
                 foundation in hardware, systems, and engineering
-                problem-solving.
+                problem-solving
               </p>
             </div>
 
@@ -229,7 +118,7 @@ function SetupOverview() {
                 <p className="text-muted mt-4 max-w-md text-base leading-7">
                   Open to remote collaboration and entry-level roles where
                   technical adaptability, continuous learning, and steady
-                  professional growth are valued.
+                  professional growth are valued
                 </p>
               </div>
             </div>
@@ -278,20 +167,20 @@ function SetupOverview() {
               </div>
               <div>
                 <h3 className="text-primary text-3xl font-semibold tracking-tight sm:text-4xl">
-                  Technologies I work with.
+                  Technologies I work with
                 </h3>
                 <p className="text-muted mt-4 max-w-2xl text-base leading-7">
                   A concise overview of the tools, platforms, and technical
                   areas I use across interface design, frontend builds, and
-                  practical development work.
+                  practical development work
                 </p>
               </div>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
-              {familiarTools.map(({ label, icon: Icon }, index) => (
+              {featuredToolkitItems.map(({ name, icon: Icon }, index) => (
                 <motion.div
-                  key={label}
+                  key={name}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: 0.15 }}
@@ -306,7 +195,7 @@ function SetupOverview() {
                     <div className="bg-card border-border text-primary rounded-xl border p-2.5">
                       <Icon size={20} />
                     </div>
-                    <p className="text-primary text-sm font-medium">{label}</p>
+                    <p className="text-primary text-sm font-medium">{name}</p>
                   </div>
                 </motion.div>
               ))}
@@ -333,77 +222,11 @@ function SetupOverview() {
 
           {isAllSkillsVisible && (
             <div className="border-border mt-6 grid gap-5 border-t pt-6">
-              <div className="flex flex-wrap justify-center gap-3">
-                {skillCollections.map(({ id, title }) => (
-                  <button
-                    key={id}
-                    type="button"
-                    onClick={() => setActiveSkillCollection(id)}
-                    className={
-                      activeSkillCollection === id
-                        ? "bg-primary text-bg inline-flex cursor-pointer items-center rounded-full px-4 py-2 text-sm font-medium transition-[background-color,border-color,color,transform] duration-150"
-                        : "bg-surface border-border text-primary hover:bg-card inline-flex cursor-pointer items-center rounded-full border px-4 py-2 text-sm font-medium transition-[background-color,border-color,color,transform] duration-150"
-                    }
-                  >
-                    {title}
-                  </button>
+              <div className="grid gap-4 sm:gap-5">
+                {toolkitCategories.map((category) => (
+                  <ToolkitCategory key={category.id} category={category} />
                 ))}
               </div>
-
-              <motion.div
-                key={selectedSkillCollection.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="bg-surface border-border rounded-4xl border p-5 sm:p-6"
-              >
-                <div className="flex flex-col gap-5">
-                  <div className="flex flex-col items-center gap-3 text-center">
-                    <div className="bg-card border-border text-primary inline-flex rounded-2xl border p-3">
-                      <SelectedIcon size={18} />
-                    </div>
-                    <div>
-                      <p className="text-primary text-xl font-semibold tracking-[-0.04em]">
-                        {selectedSkillCollection.title}
-                      </p>
-                      <p className="text-muted mt-2 max-w-3xl text-sm leading-6">
-                        {selectedSkillCollection.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div
-                    className={
-                      selectedSkillCollection.id === "soft"
-                        ? "mx-auto grid w-full max-w-4xl gap-3 sm:grid-cols-2"
-                        : "grid gap-3 sm:grid-cols-2 xl:grid-cols-3"
-                    }
-                  >
-                    {selectedSkillCollection.items.map((skill) =>
-                      (() => {
-                        const SkillIcon = skillIcons[skill] ?? BadgeCheck;
-
-                        return (
-                          <div
-                            key={skill}
-                            className={
-                              selectedSkillCollection.id === "soft"
-                                ? "border-border bg-card text-text flex items-start gap-3 rounded-2xl border px-4 py-3 text-sm leading-6"
-                                : "border-border bg-card text-text inline-flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm leading-6"
-                            }
-                          >
-                            <SkillIcon
-                              size={18}
-                              className="text-primary shrink-0"
-                            />
-                            <span>{skill}</span>
-                          </div>
-                        );
-                      })(),
-                    )}
-                  </div>
-                </div>
-              </motion.div>
             </div>
           )}
         </motion.div>

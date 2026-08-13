@@ -332,12 +332,12 @@ function ProjectsSection() {
 
               <div className="flex flex-col items-center gap-4">
                 <h2 className="text-primary max-w-4xl text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-                  Selected projects across software and hardware.
+                  Selected projects across software and hardware
                 </h2>
                 <p className="text-muted max-w-3xl text-base leading-8">
                   A focused selection of academic and practical work that
                   reflects my experience in frontend development, backend
-                  integration, embedded systems, and hardware implementation.
+                  integration, embedded systems, and hardware implementation
                 </p>
               </div>
             </div>
