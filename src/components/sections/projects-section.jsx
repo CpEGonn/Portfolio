@@ -17,6 +17,7 @@ function ProjectsSection() {
     startY: 0,
     startScrollLeft: 0,
   });
+  const ignoreNextCardClickRef = useRef(false);
   const scrollStateRef = useRef({ left: false, right: true });
   const scrollFrameRef = useRef(null);
   const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
@@ -102,7 +103,9 @@ function ProjectsSection() {
 
   function handleRailPointerDown(event) {
     const railElement = railRef.current;
-    if (!railElement) return;
+    // Let touch devices use the browser's native horizontal scrolling. Pointer
+    // capture prevents that scroll from starting reliably on mobile browsers.
+    if (!railElement || event.pointerType === "touch") return;
 
     dragStateRef.current = {
       isDragging: true,
@@ -155,7 +158,7 @@ function ProjectsSection() {
   function handleRailPointerUp(event) {
     if (dragStateRef.current.pointerId !== event.pointerId) return;
 
-    const { hasMoved, projectId } = dragStateRef.current;
+    const { hasMoved } = dragStateRef.current;
     dragStateRef.current.isDragging = false;
     dragStateRef.current.pointerId = null;
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
@@ -163,7 +166,16 @@ function ProjectsSection() {
     }
     window.setTimeout(() => setIsRailDragging(false), 0);
 
-    if (!hasMoved && projectId) {
+    if (hasMoved) {
+      ignoreNextCardClickRef.current = true;
+      window.setTimeout(() => {
+        ignoreNextCardClickRef.current = false;
+      }, 0);
+    }
+  }
+
+  function handleProjectOpen(projectId) {
+    if (!ignoreNextCardClickRef.current) {
       openProject(projectId);
     }
   }
@@ -226,7 +238,7 @@ function ProjectsSection() {
             <div
               ref={railRef}
               className={cn(
-                "project-scrollbar touch-pan-y overflow-x-auto px-6 pb-2 select-none sm:px-1",
+                "project-scrollbar touch-auto overflow-x-auto px-6 pb-2 select-none sm:px-1",
                 isRailDragging ? "cursor-grabbing" : "cursor-grab",
               )}
               onPointerDown={handleRailPointerDown}
@@ -240,7 +252,7 @@ function ProjectsSection() {
                     key={project.id}
                     project={project}
                     isActive={isDetailOpen && project.id === activeProjectId}
-                    onOpen={() => openProject(project.id)}
+                    onOpen={() => handleProjectOpen(project.id)}
                   />
                 ))}
               </div>
@@ -289,9 +301,6 @@ function ProjectCard({ project, isActive, onOpen }) {
       )}
       data-project-id={project.id}
       aria-pressed={isActive}
-      onClick={(event) => {
-        if (event.detail === 0) onOpen();
-      }}
     >
       <div className="bg-surface aspect-video overflow-hidden border-b border-border">
         <img
