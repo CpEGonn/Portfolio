@@ -17,7 +17,7 @@ function ProjectsSection() {
     startY: 0,
     startScrollLeft: 0,
   });
-  const ignoreNextCardClickRef = useRef(false);
+  const suppressCardClickRef = useRef(false);
   const scrollStateRef = useRef({ left: false, right: true });
   const scrollFrameRef = useRef(null);
   const [activeProjectId, setActiveProjectId] = useState(projects[0].id);
@@ -158,7 +158,7 @@ function ProjectsSection() {
   function handleRailPointerUp(event) {
     if (dragStateRef.current.pointerId !== event.pointerId) return;
 
-    const { hasMoved } = dragStateRef.current;
+    const { hasMoved, projectId } = dragStateRef.current;
     dragStateRef.current.isDragging = false;
     dragStateRef.current.pointerId = null;
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
@@ -166,16 +166,20 @@ function ProjectsSection() {
     }
     window.setTimeout(() => setIsRailDragging(false), 0);
 
-    if (hasMoved) {
-      ignoreNextCardClickRef.current = true;
-      window.setTimeout(() => {
-        ignoreNextCardClickRef.current = false;
-      }, 0);
+    // Pointer capture can prevent a desktop button click from being dispatched.
+    // Open a stationary click here, then suppress the duplicate button click.
+    suppressCardClickRef.current = true;
+    window.setTimeout(() => {
+      suppressCardClickRef.current = false;
+    }, 0);
+
+    if (!hasMoved && projectId) {
+      openProject(projectId);
     }
   }
 
   function handleProjectOpen(projectId) {
-    if (!ignoreNextCardClickRef.current) {
+    if (!suppressCardClickRef.current) {
       openProject(projectId);
     }
   }
@@ -186,6 +190,10 @@ function ProjectsSection() {
     dragStateRef.current.isDragging = false;
     dragStateRef.current.hasMoved = true;
     dragStateRef.current.pointerId = null;
+    suppressCardClickRef.current = true;
+    window.setTimeout(() => {
+      suppressCardClickRef.current = false;
+    }, 0);
     setIsRailDragging(false);
   }
 
