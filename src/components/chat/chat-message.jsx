@@ -13,7 +13,7 @@ const sourceLinks = {
   'project-hardware': { label: 'Hardware projects', href: '#projects' },
 }
 
-function ChatMessage({ message }) {
+function ChatMessage({ message, onNavigate }) {
   const isUser = message.role === 'user'
   const availableSources = message.sources
     ?.map((source) => ({ source, link: sourceLinks[source] }))
@@ -37,6 +37,7 @@ function ChatMessage({ message }) {
                 <a
                   key={source}
                   href={link.href}
+                  onClick={onNavigate}
                   className="text-secondary hover:text-primary inline-flex items-center gap-1 text-xs font-medium transition-colors"
                 >
                   {link.label}

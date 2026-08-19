@@ -27,6 +27,7 @@ function ChatWidget() {
   const [isUnavailable, setIsUnavailable] = useState(false)
   const [theme, setTheme] = useState(getPreferredTheme)
   const [isLauncherHovered, setIsLauncherHovered] = useState(false)
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false)
   const launcherRef = useRef(null)
   const dialogRef = useRef(null)
   const messagesEndRef = useRef(null)
@@ -43,6 +44,18 @@ function ChatWidget() {
     })
 
     return () => themeObserver.disconnect()
+  }, [])
+  useEffect(() => {
+    const handleProjectModalState = (event) => {
+      const isProjectModalOpen = Boolean(event.detail?.isOpen)
+      setIsProjectModalOpen(isProjectModalOpen)
+      if (isProjectModalOpen) {
+        setIsOpen(false)
+      }
+    }
+
+    window.addEventListener('project-modal-state', handleProjectModalState)
+    return () => window.removeEventListener('project-modal-state', handleProjectModalState)
   }, [])
 
   useEffect(() => {
@@ -72,9 +85,11 @@ function ChatWidget() {
     return () => window.clearTimeout(timeout)
   }, [cooldownUntil])
 
-  function closeChat() {
+  function closeChat({ restoreFocus = true } = {}) {
     setIsOpen(false)
-    window.setTimeout(() => launcherRef.current?.focus(), 0)
+    if (restoreFocus) {
+      window.setTimeout(() => launcherRef.current?.focus(), 0)
+    }
   }
 
   async function submitQuestion(eventOrQuestion) {
@@ -159,7 +174,11 @@ function ChatWidget() {
           <div className="project-modal-scrollbar flex-1 overflow-y-auto px-4 py-4">
             <div className="flex flex-col gap-3">
               {messages.map((chatMessage) => (
-                <ChatMessage key={chatMessage.id} message={chatMessage} />
+                <ChatMessage
+                  key={chatMessage.id}
+                  message={chatMessage}
+                  onNavigate={() => closeChat({ restoreFocus: false })}
+                />
               ))}
               {messages.length === 1 && <ChatSuggestions onSelect={submitQuestion} />}
               {isLoading && (
@@ -183,7 +202,7 @@ function ChatWidget() {
         </>
       )}
 
-      {!isOpen && (
+      {!isOpen && !isProjectModalOpen && (
         <button
           ref={launcherRef}
           type="button"
