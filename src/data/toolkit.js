@@ -29,6 +29,7 @@ import {
   SiPython,
   SiReact,
   SiSupabase,
+  SiSanity,
   SiTailwindcss,
   SiVercel,
 } from "react-icons/si";
@@ -60,7 +61,8 @@ export const toolkitCategories = [
       { name: "Node.js", icon: SiNodedotjs },
       { name: "Python", icon: SiPython, featured: true },
       { name: "FastAPI", icon: SiFastapi },
-      { name: "Supabase", icon: SiSupabase, featured: true },
+      { name: "Supabase", icon: SiSupabase },
+      { name: "Sanity.io", icon: SiSanity, featured: true },
       { name: "MySQL", icon: SiMysql },
     ],
   },

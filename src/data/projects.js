@@ -12,6 +12,7 @@ import hivemateRegister from "../assets/HivemateAssets/RegisterPage.png";
 import dormThumbnail from "../assets/Project Tumbnail/Dorm Management-Thumbnail.png";
 import hardwarePlaceholder from "../assets/Project Tumbnail/hardware-placeholder.png";
 import jpoThumbnail from "../assets/Project Tumbnail/JPO-Thumbnail.png";
+import mayumiThumbnail from "../assets/Project Tumbnail/Mayumi-Thumbnal.png";
 import nextChikaThumbnail from "../assets/Project Tumbnail/NextChika-Thumbnail.png";
 import shortcutThumbnail from "../assets/Project Tumbnail/ShortCut ATlas-Thumbnail.png";
 
@@ -34,6 +35,33 @@ export const projects = [
     liveUrl: "https://thesis-clone.markeringonzalvo.site",
     notice:
       "This website is a landing-page clone of the actual project. The original project is not currently available to the public due to institutional considerations.",
+  },
+  {
+    id: "mayumi-crafts",
+    title: "Mayumi Crafts: Handcrafted Gift Storefront",
+    label: "Web Application",
+    period: "2026 / Personal Project",
+    icon: Globe,
+    thumbnail: mayumiThumbnail,
+    summary:
+      "A polished, CMS-powered storefront for Mayumi Crafts, a Lipa City handmade gift studio. The site presents customizable satin, crochet, money bouquet, and gift-box collections through a warm editorial shopping experience, with direct Messenger inquiry flows for made-to-order purchases.",
+    highlights: [
+      "Built a responsive product catalog with search, category filters, product galleries, and detailed product pages.",
+      "Integrated Sanity.io so products, categories, site settings, brand story content, benefits, and customer-review screenshots can be managed without code changes.",
+      "Designed an editorial, handcrafted visual system with motion-triggered sections, accessible responsive layouts, and optimized image rendering.",
+      "Created a practical made-to-order flow: customers can download a product image as a reference and start a prefilled Messenger inquiry with their custom requirements.",
+      "Added customer-review presentation, reusable UI components, fallback content for CMS availability, and production deployment configuration on Vercel.",
+    ],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Sanity.io",
+      "Framer Motion",
+      "React",
+      "Vercel",
+    ],
+    liveUrl: "https://mayumi.markeringonzalvo.site",
   },
   {
     id: "nextchika",
